@@ -17,8 +17,10 @@ def startBot(message):
 def handle_callback(callback):
     if callback.data == 'yes':
         photo_url = 'maxim.png'
-        bot.send_photo(callback.message.chat.id, photo_url)
+        img = open(photo_url, 'rb')
+        bot.send_photo(callback.message.chat.id, img)
         bot.answer_callback_query(callback.id, 'фото отправлено')
+        bot.send_message(callback.chat.id, "Первого сотрудника зовут Максим. Он преподаватель языка Python. Что вы ему поставите?")
     else:
         bot.send_message(callback.message.chat.id, "Приятно познокомиться")
         
@@ -27,7 +29,7 @@ def handle_callback(callback):
 # second_mess = "Первого сотрудника зовут Максим. Он преподаватель языка Python. Какую оценку вы хотите ему поставить?"
 
 def func(message):
-    bot.send_photo(message.chat.id, open("maxim.png"))
+    bot.send_message(message.chat.id, "Первого сотрудника зовут Максим. Он преподаватель языка Python. Что вы ему поставите?")
     if(message.text == "? поставить лайк"):
         bot.send_message(message.chat.id, text="Спасибо большое!!!)")
     elif(message.text == "Почемууу"):
